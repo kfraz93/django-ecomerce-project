@@ -1,0 +1,70 @@
+# .gitignore
+
+# Python
+*.pyc
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+.Python
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg
+.tox/
+.coverage
+.coverage.*
+.cache
+.hypothesis/
+.pytest_cache/
+cover/
+htmlcov/
+.nox/
+
+# Django specific
+*.log
+*.pot
+*.mo
+*.js.map
+*.css.map
+db.sqlite3
+/media/
+/static_collected/ # If you use collectstatic, this is where files are gathered
+local_settings.py # Or any other file you use for local/sensitive settings
+.env # If you use a .env file for environment variables
+
+# IDEs
+.idea/             # PyCharm specific
+.vscode/           # VS Code specific
+*.iml              # IntelliJ IDEA / PyCharm module files
+.DS_Store          # macOS specific
+Thumbs.db          # Windows specific
+
+# Operating System files
+.DS_Store
+.localized
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Virtualenv
+# .venv/           # already covered above
+# env/             # already covered above
+
+# Other common files
+*.swp
+*~
+.directory
+Readme.md
