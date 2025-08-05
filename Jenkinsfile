@@ -80,7 +80,7 @@ post {
     }
     // Clean up the workspace after the build, regardless of success or failure.
     // This is good practice to ensure clean builds and save disk space.
-    # cleanup {
-    #     deleteDir()
-    # }
+    cleanup {
+        deleteDir()
+    }
 }
