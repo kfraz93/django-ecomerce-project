@@ -4,8 +4,8 @@
 
 {% block content %}
 <!-- Shows the items available with name, image and price  -->
-<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-    <h2 class="mb-12 text-2xl text-center">Newest items</h2>
+<div class="mt-6 px-6 py-12 bg-gray-100 dark:bg-gray-800 rounded-xl transition-colors duration-300">
+    <h2 class="mb-12 text-2xl text-center text-gray-900 dark:text-gray-100">Newest items</h2>
     <div class="grid grid-cols-3 gap-3">
         {% for item in items %}
         <div>
@@ -13,9 +13,9 @@
             <div class="relative pb-[56.25%] overflow-hidden">
                 <img src="{{ item.image.url }}" class="absolute inset-0 w-full h-full object-cover rounded-t-xl">
             </div>
-            <div class="p-6 bg-white rounded-b-xl">
-                <h2 class="text-2xl">{{ item.name }}</h2>
-                <p class="text-gray-500">{{ item.price }}</p>
+            <div class="p-6 bg-white dark:bg-gray-700 rounded-b-xl transition-colors duration-300">
+                <h2 class="text-2xl text-gray-900 dark:text-gray-100">{{ item.name }}</h2>
+                <p class="text-gray-500 dark:text-gray-300">{{ item.price }}</p>
             </div>
             </a>
         </div>
@@ -23,22 +23,22 @@
     </div>
 </div>
 
+---
+
 <!-- Shows the Categories available with name, count of items in each category  -->
-<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-    <h2 class="mb-12 text-2xl text-center">Categories</h2>
+<div class="mt-6 px-6 py-12 bg-gray-100 dark:bg-gray-800 rounded-xl transition-colors duration-300">
+    <h2 class="mb-12 text-2xl text-center text-gray-900 dark:text-gray-100">Categories</h2>
 
     <div class="grid grid-cols-3 gap-3">
         {% for category in categories %}
             <div>
-        <a href=""></a>
-        <div class="p-6 bg-white rounded-b-xl">
-            <h2 class="text-2xl">{{ category.name }}</h2>
-            <p class="text-gray-500">{{ category.items.count }} items</p>
-        </div>
-
-    </div>
-
+                <a href=""></a> {# This link is empty, consider adding a category URL here #}
+                <div class="p-6 bg-white dark:bg-gray-700 rounded-b-xl transition-colors duration-300">
+                    <h2 class="text-2xl text-gray-900 dark:text-gray-100">{{ category.name }}</h2>
+                    <p class="text-gray-500 dark:text-gray-300">{{ category.items.count }} items</p>
+                </div>
+            </div>
         {% endfor %}
-</div>
+    </div>
 </div>
 {% endblock %}

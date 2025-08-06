@@ -32,7 +32,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 LOGIN_URL ='/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/' # Redirect to homepage after successful login
+LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -124,11 +125,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#  Session configurations
+
+# If set to True, the session cookie will expire when the user closes their browser.
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+# If a user makes no requests within this period, their session will expire.
+SESSION_COOKIE_AGE = 1800 # 30 minutes
+
+# If True, Django will save the session to the database on every single request.
+SESSION_SAVE_EVERY_REQUEST = True

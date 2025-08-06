@@ -1,6 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.contrib import messages
+
 from item.models import Category, Item
-from .forms import SignupForm
+from .forms import SignupForm, UserProfileEditForm
 
 def index(request):
     """
@@ -30,4 +33,19 @@ def signup(request):
 
     return render(request, 'core/signup.html', {
         'form': form
+    })
+
+@login_required
+def profile_edit(request):
+    if request.method == 'POST':
+        form = UserProfileEditForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your profile is successfully updated")
+            return redirect('core:profile_edit')
+    else:
+        form = UserProfileEditForm(instance=request.user)
+    return render(request, 'core/profile_edit.html', {
+        'form': form,
+        'title': 'Edit Profile',
     })

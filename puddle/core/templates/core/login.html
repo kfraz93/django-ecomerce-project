@@ -3,21 +3,21 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="w-1/2 my-6 p-6 mx-auto bg-gray-100 rounded-xl">
-    <h1 class="mb-6 text-3xl">Login</h1>
-    <form method="post" action=".">
+<div class="w-1/2 my-6 p-6 mx-auto bg-gray-100 dark:bg-gray-700 rounded-xl transition-colors duration-300">
+    <h1 class="mb-6 text-3xl text-gray-900 dark:text-gray-100">Login</h1>
+    <form method="post" action="." class="space-y-4"> {# Added space-y-4 for consistent spacing #}
         {% csrf_token %}
 
         <div class="mb-3">
-            <label class="inline-block mb-2">Username</label><br>
+            <label class="inline-block mb-2 text-gray-700 dark:text-gray-200">Username</label><br>
             {{ form.username }}
         </div>
         <div class="mb-3">
-            <label class="inline-block mb-2">Password</label><br>
+            <label class="inline-block mb-2 text-gray-700 dark:text-gray-200">Password</label><br>
             {{ form.password }}
         </div>
         {% if form.errors or form.non_field_errors %}
-        <div class="mb-3 p-6 bg-red-100 rounded-xl">
+        <div class="mb-3 p-6 bg-red-100 dark:bg-red-800 rounded-xl text-red-700 dark:text-red-200">
             {% for field in form %}
             {{ field.errors }}
             {% endfor %}
