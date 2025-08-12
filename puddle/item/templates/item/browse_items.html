@@ -3,31 +3,28 @@
 {% block title %}Items{% endblock %}
 
 {% block content %}
-{# Changed px-6 to py-6 for vertical padding #}
-<div class="py-3 px-3 grid grid-cols-4 gap-4 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
-    <div class="col-span-1 px-2 py-2 bg-white dark:bg-gray-800 rounded-xl shadow-md transition-colors duration-300">
+<div class="py-3 px-3 grid grid-cols-4 gap-4 browse-page-container">
+    <div class="col-span-1 browse-sidebar-card">
         <form method="get" action="{% url 'item:browse_items' %}">
-            <input name="query" class="w-full py-4 px-6 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300" type="text" value="{{ query }} "
+            <input name="query" class="browse-search-input" type="text" value="{{ query }}"
                    placeholder="Find your desired item...">
-            <button class="mt-2 py-3 px-8 text-lg bg-teal-500 text-white rounded-xl hover:bg-teal-700 transition-colors duration-300">Search</button>
+            <button class="browse-search-button">Search</button>
 
             <hr class="my-6 border-gray-200 dark:border-gray-700">
-            <p class="font-semibold text-gray-700 dark:text-gray-200">categories</p>
+            <p class="browse-category-heading">categories</p>
             <ul>
                 {% for category in categories %}
-                <li class="py-2 px-2 rounded-xl text-gray-700 dark:text-gray-200
-                    {% if category.id == category_id %} bg-gray-200 dark:bg-gray-600 {% endif %}
-                    hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
+                <li class="browse-category-list-item {% if category.id == category_id %}browse-category-list-item-active{% endif %}">
                     <a href="{% url 'item:browse_items' %}?query={{ query }}&category={{ category.id }}"
                        class="block w-full h-full">{{ category.name }}</a>
                 </li>
                 {% endfor %}
             </ul>
             <hr class="my-6 border-gray-200 dark:border-gray-700">
-            <p class="font-semibold text-gray-700 dark:text-gray-200">Clear filters</p>
+            <p class="browse-category-heading">Clear filters</p>
             <ul>
                 <li><a href="{% url 'item:browse_items' %}"
-                       class="mt-2 py-3 px-8 inline-block bg-yellow-500 text-lg rounded-xl text-white hover:bg-yellow-600 transition-colors duration-300">Clear</a></li>
+                       class="browse-clear-button">Clear</a></li>
             </ul>
         </form>
     </div>
@@ -40,9 +37,9 @@
                         <img src="{{ item.image.url }}"
                              class="absolute inset-0 w-full h-full object-cover rounded-t-xl">
                     </div>
-                    <div class="p-6 bg-white dark:bg-gray-700 rounded-b-xl transition-colors duration-300">
-                        <h2 class="text-2xl text-gray-900 dark:text-gray-100">{{ item.name }}</h2>
-                        <p class="text-gray-500 dark:text-gray-300">{{ item.price }}</p>
+                    <div class="browse-item-card-content">
+                        <h2 class="browse-item-name">{{ item.name }}</h2>
+                        <p class="browse-item-price">{{ item.price }}</p>
                     </div>
                 </a>
             </div>

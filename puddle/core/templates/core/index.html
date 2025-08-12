@@ -4,7 +4,7 @@
 
 {% block content %}
 <!-- Shows the items available with name, image and price  -->
-<div class="mt-6 px-6 py-12 bg-gray-100 dark:bg-gray-800 rounded-xl transition-colors duration-300">
+<div class="mt-6 px-6 py-4 bg-gray-100 dark:bg-gray-800 rounded-xl transition-colors duration-300">
     <h2 class="mb-12 text-2xl text-center text-gray-900 dark:text-gray-100">Newest items</h2>
     <div class="grid grid-cols-3 gap-3">
         {% for item in items %}
@@ -22,8 +22,6 @@
         {% endfor %}
     </div>
 </div>
-
----
 
 <!-- Shows the Categories available with name, count of items in each category  -->
 <div class="mt-6 px-6 py-12 bg-gray-100 dark:bg-gray-800 rounded-xl transition-colors duration-300">

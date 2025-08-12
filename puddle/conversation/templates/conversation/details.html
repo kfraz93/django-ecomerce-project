@@ -3,19 +3,20 @@
 {% block title %}Conversation{% endblock %}
 
 {% block content %}
-<h1 class="mb-6 text-3xl text-gray-900 dark:text-gray-100">Conversation</h1>
+<div class="auth-card">
+<h1 class="auth-heading">Conversation</h1>
 
 <div class="space-y-6">
     {% for message in conversation.messages.all %}
-        <div class="p-6 flex rounded-xl transition-colors duration-300
+        <div class="p-6 flex
             {% if message.created_by == request.user %}
-                bg-blue-100 dark:bg-blue-800
+                rounded-xl transition-colors duration-300 bg-blue-100 dark:bg-blue-800
             {% else %}
-                bg-gray-100 dark:bg-gray-700
+                card-primary
             {% endif %}">
             <div>
-                <p class="mb-4 text-gray-700 dark:text-gray-200"><strong>{{ message.created_by.username }}</strong> @ {{ message.created_at }}</p>
-                <p class="text-gray-900 dark:text-gray-100">{{ message.content }}</p>
+                <p class="mb-4 text-[rgb(var(--color-secondary-text))]"><strong>{{ message.created_by.username }}</strong> @ {{ message.created_at }}</p>
+                <p class="text-[rgb(var(--color-primary-text))]">{{ message.content }}</p>
             </div>
         </div>
     {% endfor %}
@@ -26,7 +27,7 @@
     {# Form fields will get dark mode styling from forms.py #}
     {{ form.as_p }}
 
-    <button class="py-3 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white transition-colors duration-300">Send</button>
+    <button class="btn-primary">Send</button>
 </form>
-
+</div>
 {% endblock %}

@@ -1,28 +1,29 @@
 from django import forms
-from  .models import Item
+from .models import Item
 
-# UPDATED WIDGET_STYLE_CLASSES to include dark mode styling and transitions
-WIDGET_STYLE_CLASSES = 'w-full py-4 px-6 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300'
+# The WIDGET_STYLE_CLASSES constant is no longer needed since we have a reusable
+# component class defined in input.css. We can now use 'form-input' directly.
 
 class NewItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ('category', 'name', 'description', 'price', 'image',)
         widgets = {
+            # We are now using our 'form-input' component class
             'category': forms.Select(attrs={
-                'class': WIDGET_STYLE_CLASSES
+                'class': 'form-input'
             }),
             'name': forms.TextInput(attrs={
-                'class': WIDGET_STYLE_CLASSES
+                'class': 'form-input'
             }),
             'description': forms.Textarea(attrs={
-                'class': WIDGET_STYLE_CLASSES
+                'class': 'form-input'
             }),
             'price': forms.TextInput(attrs={
-                'class': WIDGET_STYLE_CLASSES
+                'class': 'form-input'
             }),
             'image': forms.FileInput(attrs={
-                'class': WIDGET_STYLE_CLASSES
+                'class': 'form-input'
             })
         }
 
@@ -31,19 +32,22 @@ class EditItemForm(forms.ModelForm):
         model = Item
         fields = ('name', 'description', 'price', 'image', 'is_sold')
         widgets = {
+            # We are now using our 'form-input' component class
             'name': forms.TextInput(attrs={
-                'class': WIDGET_STYLE_CLASSES
+                'class': 'form-input'
             }),
             'description': forms.Textarea(attrs={
-                'class': WIDGET_STYLE_CLASSES
+                'class': 'form-input'
             }),
             'price': forms.TextInput(attrs={
-                'class': WIDGET_STYLE_CLASSES
+                'class': 'form-input'
             }),
             'image': forms.FileInput(attrs={
-                'class': WIDGET_STYLE_CLASSES
+                'class': 'form-input'
             }),
-            'is_sold': forms.CheckboxInput(attrs={ # Checkbox styling for dark mode
-                'class': 'w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 transition-colors duration-300'
+            # The checkbox requires different styling, but we can make it
+            # consistent with the new theme colors.
+            'is_sold': forms.CheckboxInput(attrs={
+                'class': 'form-checkbox'
             }),
         }

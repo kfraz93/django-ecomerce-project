@@ -2,11 +2,173 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom CSS for the dropdown menu (moved from custom.css) */
-.dropdown-menu {
-    display: none;
+@layer base {
+  :root {
+    --color-primary-bg: 243 244 246;
+    --color-secondary-bg: 255 255 255;
+    --color-primary-text: 17 24 39;
+    --color-secondary-text: 107 114 128;
+    --color-border: 209 213 219;
+    --color-brand: 20 184 166;
+    --color-brand-hover: 15 118 107;
+    --color-danger: 239 68 68;
+    --color-danger-hover: 185 28 28;
+    --color-input-bg-light: 255 255 255;
+    --color-input-text-light: 17 24 39;
+    --color-active-category-light: 229 231 235;
+    --color-category-hover-light: 243 244 246;
+    --color-item-card-bg-light: 255 255 255;
+    --color-item-text-light: 17 24 39;
+    --color-item-price-light: 107 114 128;
+  }
+
+  .dark {
+    --color-primary-bg: 55 65 81;
+    --color-secondary-bg: 31 41 55;
+    --color-primary-text: 243 244 246;
+    --color-secondary-text: 209 213 219;
+    --color-border: 75 85 99;
+    --color-brand: 20 184 166;
+    --color-brand-hover: 15 118 107;
+    --color-danger: 239 68 68;
+    --color-danger-hover: 185 28 28;
+    --color-input-bg-dark: 31 41 55;
+    --color-input-text-dark: 243 244 246;
+    --color-active-category-dark: 75 85 99;
+    --color-category-hover-dark: 55 65 81;
+    --color-item-card-bg-dark: 55 65 81;
+    --color-item-text-dark: 243 244 246;
+    --color-item-price-dark: 209 213 219;
+  }
 }
 
-.dropdown:hover .dropdown-menu {
-    display: block;
+@layer components {
+    /* --- Shared Components (for login and other pages) --- */
+    .card {
+        @apply rounded-xl transition-colors duration-300;
+    }
+    .auth-card {
+        @apply max-w-md mx-auto mt-10 p-6 card bg-[rgb(var(--color-primary-bg))] dark:bg-[rgb(var(--color-primary-bg))] shadow-lg;
+    }
+    .auth-heading {
+        @apply mb-6 text-3xl text-[rgb(var(--color-primary-text))] dark:text-[rgb(var(--color-primary-text))];
+    }
+    .form-label {
+        @apply mb-1 block text-[rgb(var(--color-secondary-text))] dark:text-[rgb(var(--color-secondary-text))] font-medium;
+    }
+    .form-input {
+        @apply w-full px-6 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow duration-200 bg-[rgb(var(--color-secondary-bg))] text-[rgb(var(--color-primary-text))] dark:bg-[rgb(var(--color-secondary-bg))] dark:border-[rgb(var(--color-border))] dark:text-[rgb(var(--color-primary-text))];
+    }
+    .form-error-message {
+        @apply mb-3 p-6 bg-red-100 dark:bg-red-800 rounded-xl text-red-700 dark:text-red-200;
+    }
+    .btn-primary {
+        @apply w-full px-6 py-4 text-lg font-semibold text-white bg-[rgb(var(--color-brand))] rounded-xl hover:bg-[rgb(var(--color-brand-hover))] transition-colors duration-300;
+    }
+    .btn-danger {
+        @apply w-full px-6 py-4 text-lg font-semibold text-white bg-[rgb(var(--color-danger))] rounded-xl hover:bg-[rgb(var(--color-danger-hover))] transition-colors duration-300;
+    }
+
+    /* --- Browse Page Specific Components --- */
+    .browse-page-container {
+        @apply bg-gray-100 dark:bg-gray-900 transition-colors duration-300;
+    }
+    .browse-sidebar-card {
+        @apply px-2 py-2 bg-white dark:bg-gray-800 rounded-xl shadow-md transition-colors duration-300;
+    }
+    .browse-search-input {
+        @apply w-full py-4 px-6 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300;
+    }
+    .browse-search-button {
+        @apply mt-2 py-3 px-8 text-lg bg-teal-500 text-white rounded-xl hover:bg-teal-700 transition-colors duration-300;
+    }
+    .browse-category-heading {
+        @apply font-semibold text-gray-700 dark:text-gray-200;
+    }
+    .browse-category-list-item {
+        @apply py-2 px-2 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300;
+    }
+    .browse-category-list-item-active {
+        @apply bg-gray-200 dark:bg-gray-600;
+    }
+    .browse-clear-button {
+        @apply mt-2 py-3 px-8 inline-block bg-yellow-500 text-lg rounded-xl text-white hover:bg-yellow-600 transition-colors duration-300;
+    }
+    .browse-item-card-content {
+        @apply p-6 bg-white dark:bg-gray-700 rounded-b-xl transition-colors duration-300;
+    }
+    .browse-item-name {
+        @apply text-2xl text-gray-900 dark:text-gray-100;
+    }
+    .browse-item-price {
+        @apply text-gray-500 dark:text-gray-300;
+    }
+
+    /* --- Details Page Specific Components --- */
+    .details-image-wrapper {
+        @apply relative pb-[70%] max-h-screen overflow-hidden rounded-xl;
+    }
+    .details-main-image {
+        @apply absolute inset-0 w-full h-full object-contain;
+    }
+
+    /* --- Base Template Components (NEW) --- */
+    .main-body {
+        @apply bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300;
+    }
+    .main-nav {
+        @apply px-6 py-6 flex justify-between items-center border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 transition-colors duration-300;
+    }
+    .nav-logo {
+        @apply text-xl font-semibold text-gray-800 dark:text-white;
+    }
+    .nav-link {
+        @apply text-lg font-semibold hover:text-gray-500 dark:hover:text-gray-400 text-gray-700 dark:text-gray-200;
+    }
+    .nav-auth-btn {
+        @apply px-6 py-2 text-lg font-semibold bg-teal-500 text-white rounded-md hover:bg-teal-700 focus:outline-none;
+    }
+    .nav-dropdown-menu {
+        @apply absolute right-0 w-48 bg-white dark:bg-gray-700 rounded-md shadow-lg py-1 z-20 transition-colors duration-300;
+    }
+    .dropdown-link {
+        @apply block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600;
+    }
+    .dropdown-logout-btn {
+        @apply block w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-800;
+    }
+    .auth-button-signup {
+        @apply px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700;
+    }
+    .auth-button-login {
+        @apply px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700;
+    }
+    .messages-container {
+        @apply px-6 py-4;
+    }
+    .message-box {
+        @apply p-3 mb-4 text-sm rounded-lg;
+    }
+    .message-success {
+        @apply text-green-700 bg-green-100 dark:bg-green-800 dark:text-green-200;
+    }
+    .message-error {
+        @apply text-red-700 bg-red-100 dark:bg-red-800 dark:text-red-200;
+    }
+    .message-info {
+        @apply text-blue-700 bg-blue-100 dark:bg-blue-800 dark:text-blue-200;
+    }
+    .main-content-wrapper {
+        @apply px-6 py-6 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300 min-h-[calc(100vh-200px)];
+    }
+    .main-footer {
+        @apply py-6 px-6 flex justify-between bg-gray-600 dark:bg-gray-900 text-gray-300 dark:text-gray-400 transition-colors duration-300;
+    }
+    .footer-heading {
+        @apply mb-5 font-semibold text-gray-300 dark:text-gray-200;
+    }
+    .footer-link {
+        @apply text-ls text-teal-500 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-600;
+    }
+
 }

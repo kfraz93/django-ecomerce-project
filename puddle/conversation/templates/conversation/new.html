@@ -3,8 +3,8 @@
 {% block title %}New Message{% endblock %} {# Changed title to be more specific #}
 
 {% block content %}
-<div class="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg transition-colors duration-300">
-    <h1 class="mb-6 text-3xl text-gray-900 dark:text-gray-100">Send New Message</h1> {# Changed heading text #}
+<div class="auth-card">
+    <h1 class="auth-heading">Send New Message</h1> {# Changed heading text #}
 
     <form method="post" action=".">
         {% csrf_token %}
@@ -14,7 +14,7 @@
         </div>
 
         {% if form.errors or form.non_field_errors %}
-        <div class="mb-3 p-6 bg-red-100 dark:bg-red-800 rounded-xl text-red-700 dark:text-red-200">
+        <div class="form-error-message">
             {% for field in form %}
             {{ field.errors }}
             {% endfor %}
@@ -23,7 +23,7 @@
         </div>
         {% endif %}
 
-        <button class="mt-6 py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white transition-colors duration-300">Send Message</button>
+        <button class="mt-6 btn-primary">Send Message</button>
     </form>
 </div>
 {% endblock %}

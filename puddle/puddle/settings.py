@@ -19,7 +19,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -31,8 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_URL ='/login/'
-LOGIN_REDIRECT_URL = '/' # Redirect to homepage after successful login
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'  # Redirect to homepage after successful login
 LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
@@ -44,10 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'core',
     'dashboard',
     'item',
     'conversation',
+    'cart',
+    'ninja',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +81,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'puddle.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
@@ -89,7 +90,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -109,7 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
@@ -120,7 +119,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
@@ -144,7 +142,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 # If a user makes no requests within this period, their session will expire.
-SESSION_COOKIE_AGE = 1800 # 30 minutes
+SESSION_COOKIE_AGE = 1800  # 30 minutes
 
 # If True, Django will save the session to the database on every single request.
 SESSION_SAVE_EVERY_REQUEST = True
+
+# Password Reset Email Settings
+# For development, we'll use the Console backend. This prints emails to the console.
+# In production, you would configure an actual SMTP server here.
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = 'support@puddle.com'
+EMAIL_FILE_PATH = BASE_DIR /'emails'

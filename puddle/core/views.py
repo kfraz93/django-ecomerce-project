@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordResetView
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
@@ -49,3 +50,18 @@ def profile_edit(request):
         'form': form,
         'title': 'Edit Profile',
     })
+
+
+class MyPasswordResetView(PasswordResetView):
+    """
+    Custom PasswordResetView to handle namespaced URLs.
+    """
+    def get_context_data(self, **kwargs):
+        """
+        Overrides the get_context_data method to add the
+        namespaced URL name for password reset confirmation.
+        """
+        context = super().get_context_data(**kwargs)
+        # Pass the namespaced URL name to the email template context
+        context['password_reset_confirm_url'] = 'core:password_reset_confirm'
+        return context

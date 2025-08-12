@@ -1,12 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // Configure Tailwind to scan your Django templates for class names
+  // Add the path to your input.css file to the content array.
   content: [
-    // Scan all HTML files in any subdirectory
     './**/*.html',
-    // Scan all JS files in any subdirectory, BUT IGNORE node_modules
     './**/*.js',
-    '!./node_modules/**', // EXCLUDE node_modules directory
+    './**/*.css', // <-- Make sure this line is included
+    '!./node_modules/**',
   ],
   darkMode: 'class',
   theme: {
