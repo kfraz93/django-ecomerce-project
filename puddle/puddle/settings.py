@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
+import pathlib
 from pathlib import Path
+from dotenv import load_dotenv
 
 # from django.conf.global_settings import LOGIN_REDIRECT_URL
 
@@ -158,3 +160,11 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = 'support@puddle.com'
 EMAIL_FILE_PATH = BASE_DIR /'emails'
+
+# Stripe API Keys
+# It's best to store these in a .env file and access them with os.environ.get
+# For development, you can temporarily put your test key here, but remember to remove it.
+load_dotenv(BASE_DIR / '.env')
+
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
