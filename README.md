@@ -76,16 +76,16 @@ The project follows a modular Django structure:
 ## 🖼️ Screenshots
 
 ### Add Product
-![Home](static/images/README/CreateProduct.png)
+![Home](puddle/puddle/static/images/README/CreateProduct.png)
 
 ### Dark Mode Filter Products
-![Dark Mode](static/images/README/FilterCategory.png)
+![Dark Mode](puddle/puddle/static/images/README/FilterCategory.png)
 
 ### Light Mode Filter Products
-![Dark Mode](static/images/README/FilterCategoryLight.png)
+![Dark Mode](puddle/puddle/static/images/README/FilterCategoryLight.png)
 
 ### Message Seller
-![Cart](static/images/README/ContactProduct.png)
+![Cart](puddle/puddle/static/images/README/ContactProduct.png)
 
 ## 🌱 Roadmap
 
